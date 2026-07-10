@@ -5,8 +5,9 @@ from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 import logging
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 from app.core.config import get_settings
 from app.core.logging import configure_logging
@@ -52,6 +53,7 @@ def create_app() -> FastAPI:
 
     static_path = Path(__file__).resolve().parents[1] / "static"
     app.mount("/static", StaticFiles(directory=static_path), name="static")
+    templates = Jinja2Templates(directory=Path(__file__).resolve().parents[1] / "templates")
     app.include_router(health.router, prefix=settings.api_prefix)
     app.include_router(metadata_router, prefix=settings.api_prefix)
     app.include_router(empresa_router, prefix=settings.api_prefix)
@@ -67,13 +69,9 @@ def create_app() -> FastAPI:
     app.include_router(auth_router, prefix=settings.api_prefix)
 
     @app.get("/", include_in_schema=False)
-    async def root() -> dict[str, str]:
-        """Return basic navigation metadata for humans and monitors."""
-        return {
-            "service": settings.app_name,
-            "docs": "/docs",
-            "health": f"{settings.api_prefix}/health",
-        }
+    async def root(request: Request):
+        """Render the built-in API tester frontend."""
+        return templates.TemplateResponse("index.html", {"request": request})
 
     return app
 

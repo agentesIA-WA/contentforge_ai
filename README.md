@@ -72,6 +72,21 @@ Acesse:
 - Swagger: http://127.0.0.1:8000/docs
 - Health check: http://127.0.0.1:8000/api/v1/health
 - Metadata tables: http://127.0.0.1:8000/api/v1/metadata/tables
+
+## Execução em Docker
+
+Use Docker e docker-compose para subir a API com PostgreSQL local:
+
+```bash
+docker compose up --build
+```
+
+A aplicação ficará disponível em:
+
+- API: http://127.0.0.1:8000
+- Swagger: http://127.0.0.1:8000/docs
+
+O banco PostgreSQL local estará exposto na porta `5432`.
 - Empresas CRUD:
   - Listar: http://127.0.0.1:8000/api/v1/empresas
   - Criar: `POST http://127.0.0.1:8000/api/v1/empresas`

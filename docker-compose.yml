@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: beauty
+      POSTGRES_PASSWORD: beauty123
+      POSTGRES_DB: beauty_content_ai
+    ports:
+      - '15432:5432'
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/workspace
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://beauty:beauty123@db:5432/beauty_content_ai
+
+volumes:
+  db-data:

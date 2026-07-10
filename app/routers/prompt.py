@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 from app.database.session import get_db
 from app.models.prompt import Prompt
 from app.schemas.prompt import PromptCreate, PromptRead, PromptUpdate
+from app.services import llm
 
 router = APIRouter(tags=["Prompts"])
 
@@ -61,3 +62,32 @@ def delete_prompt(prompt_id: UUID, db: Session = Depends(get_db)) -> dict[str, s
     db.delete(prompt)
     db.commit()
     return {"detail": "Prompt removido"}
+
+
+@router.post("/prompts/{prompt_id}/gerar", response_model=PromptRead)
+def gerar_prompt(prompt_id: UUID, db: Session = Depends(get_db)) -> Prompt:
+    """Trigger generation for a prompt: call LLM and persist the resposta + status."""
+    prompt = db.get(Prompt, prompt_id)
+    if prompt is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Prompt não encontrado")
+
+    # mark as sent
+    prompt.status = "enviado"
+    db.add(prompt)
+    db.commit()
+    db.refresh(prompt)
+
+    # call LLM service (synchronous). Service will simulate if no API key present.
+    result = llm.generate_text(prompt.conteudo, modelo=prompt.modelo_ia, parametros=prompt.parametros)
+
+    if isinstance(result, dict) and result.get("error"):
+        prompt.status = "falhou"
+        prompt.resposta = {"error": result.get("error")}
+    else:
+        prompt.status = "respondido"
+        prompt.resposta = result
+
+    db.add(prompt)
+    db.commit()
+    db.refresh(prompt)
+    return prompt

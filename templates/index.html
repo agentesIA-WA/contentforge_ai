@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beauty Content AI API Tester</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Beauty Content AI</p>
+          <h1>Validador de API</h1>
+          <p>Use esta interface para testar chamadas aos endpoints e inspecionar respostas em tempo real.</p>
+        </div>
+        <div class="meta-card">
+          <strong>API Base</strong>
+          <code>/api/v1</code>
+        </div>
+      </header>
+
+      <main class="grid-layout">
+        <section class="panel">
+          <div class="panel-header">
+            <h2>Chamada HTTP</h2>
+          </div>
+          <div class="form-grid">
+            <label for="method">Método</label>
+            <select id="method">
+              <option value="GET">GET</option>
+              <option value="POST">POST</option>
+              <option value="PUT">PUT</option>
+              <option value="DELETE">DELETE</option>
+            </select>
+
+            <label for="path">Caminho</label>
+            <input id="path" type="text" value="/api/v1/health" />
+
+            <label for="body">Corpo JSON</label>
+            <textarea id="body" placeholder="{}"></textarea>
+          </div>
+
+          <div class="actions-row">
+            <button id="sendRequest" class="primary">Enviar</button>
+            <button id="quickHealth" class="secondary">Health</button>
+            <button id="quickDocs" class="secondary">Docs</button>
+          </div>
+        </section>
+
+        <section class="panel panel-light">
+          <div class="panel-header">
+            <h2>Resultado</h2>
+          </div>
+          <div class="response-area">
+            <div class="response-meta">
+              <span id="status">Status: -</span>
+              <span id="time">Tempo: -</span>
+            </div>
+            <pre id="response">Use o botão Enviar para executar uma requisição.</pre>
+          </div>
+        </section>
+
+        <section class="panel panel-sidebar">
+          <div class="panel-header">
+            <h2>EndPoints úteis</h2>
+          </div>
+          <ul class="shortcut-list">
+            <li><button class="link-button" data-path="/api/v1/health">/api/v1/health</button></li>
+            <li><button class="link-button" data-path="/api/v1/metadata/tables">/api/v1/metadata/tables</button></li>
+            <li><button class="link-button" data-path="/api/v1/empresas">/api/v1/empresas</button></li>
+            <li><button class="link-button" data-path="/api/v1/servicos">/api/v1/servicos</button></li>
+            <li><button class="link-button" data-path="/api/v1/posts">/api/v1/posts</button></li>
+            <li><button class="link-button" data-path="/api/v1/prompts">/api/v1/prompts</button></li>
+            <li><button class="link-button" data-path="/api/v1/publicacoes">/api/v1/publicacoes</button></li>
+            <li><button class="link-button" data-path="/api/v1/usuarios">/api/v1/usuarios</button></li>
+          </ul>
+        </section>
+
+        <section class="panel panel-green">
+          <div class="panel-header">
+            <h2>Gerar Prompt</h2>
+          </div>
+          <div class="form-grid">
+            <label for="empresaId">Empresa ID</label>
+            <input id="empresaId" placeholder="UUID da empresa" />
+
+            <label for="agente">Agente</label>
+            <input id="agente" value="writer" />
+
+            <label for="tipoPrompt">Tipo</label>
+            <input id="tipoPrompt" value="conteudo" />
+
+            <label for="conteudoPrompt">Conteúdo</label>
+            <textarea id="conteudoPrompt" placeholder="Escreva o prompt aqui..."></textarea>
+
+            <label for="modeloIa">Modelo IA</label>
+            <input id="modeloIa" placeholder="gpt-3.5-turbo" />
+          </div>
+
+          <div class="actions-row">
+            <button id="createGenerate" class="primary">Criar e Gerar</button>
+          </div>
+
+          <div class="response-area small">
+            <div class="response-meta">
+              <span id="genStatus">Status: -</span>
+            </div>
+            <pre id="genResponse">Resposta gerada aparecerá aqui.</pre>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
