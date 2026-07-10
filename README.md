@@ -72,6 +72,76 @@ Acesse:
 - Swagger: http://127.0.0.1:8000/docs
 - Health check: http://127.0.0.1:8000/api/v1/health
 - Metadata tables: http://127.0.0.1:8000/api/v1/metadata/tables
+- Empresas CRUD:
+  - Listar: http://127.0.0.1:8000/api/v1/empresas
+  - Criar: `POST http://127.0.0.1:8000/api/v1/empresas`
+  - Buscar: http://127.0.0.1:8000/api/v1/empresas/{id}
+  - Atualizar: `PUT http://127.0.0.1:8000/api/v1/empresas/{id}`
+  - Excluir: `DELETE http://127.0.0.1:8000/api/v1/empresas/{id}`
+- Serviços CRUD:
+  - Listar: http://127.0.0.1:8000/api/v1/servicos
+  - Criar: `POST http://127.0.0.1:8000/api/v1/servicos`
+  - Buscar: http://127.0.0.1:8000/api/v1/servicos/{id}
+  - Atualizar: `PUT http://127.0.0.1:8000/api/v1/servicos/{id}`
+  - Excluir: `DELETE http://127.0.0.1:8000/api/v1/servicos/{id}`
+- Posts CRUD:
+  - Listar: http://127.0.0.1:8000/api/v1/posts
+  - Criar: `POST http://127.0.0.1:8000/api/v1/posts`
+  - Buscar: http://127.0.0.1:8000/api/v1/posts/{id}
+  - Atualizar: `PUT http://127.0.0.1:8000/api/v1/posts/{id}`
+  - Excluir: `DELETE http://127.0.0.1:8000/api/v1/posts/{id}`
+- Prompts CRUD:
+  - Listar: http://127.0.0.1:8000/api/v1/prompts
+  - Criar: `POST http://127.0.0.1:8000/api/v1/prompts`
+  - Buscar: http://127.0.0.1:8000/api/v1/prompts/{id}
+  - Atualizar: `PUT http://127.0.0.1:8000/api/v1/prompts/{id}`
+  - Excluir: `DELETE http://127.0.0.1:8000/api/v1/prompts/{id}`
+- Calendário editorial CRUD:
+  - Listar: http://127.0.0.1:8000/api/v1/calendario-editorial
+  - Criar: `POST http://127.0.0.1:8000/api/v1/calendario-editorial`
+  - Buscar: `GET http://127.0.0.1:8000/api/v1/calendario-editorial/{id}`
+  - Atualizar: `PUT http://127.0.0.1:8000/api/v1/calendario-editorial/{id}`
+  - Excluir: `DELETE http://127.0.0.1:8000/api/v1/calendario-editorial/{id}`
+- Configurações CRUD:
+  - Listar: http://127.0.0.1:8000/api/v1/configuracoes
+  - Criar: `POST http://127.0.0.1:8000/api/v1/configuracoes`
+  - Buscar: `GET http://127.0.0.1:8000/api/v1/configuracoes/{id}`
+  - Atualizar: `PUT http://127.0.0.1:8000/api/v1/configuracoes/{id}`
+  - Excluir: `DELETE http://127.0.0.1:8000/api/v1/configuracoes/{id}`
+- Métricas CRUD:
+  - Listar: http://127.0.0.1:8000/api/v1/metricas
+  - Criar: `POST http://127.0.0.1:8000/api/v1/metricas`
+  - Buscar: `GET http://127.0.0.1:8000/api/v1/metricas/{id}`
+  - Atualizar: `PUT http://127.0.0.1:8000/api/v1/metricas/{id}`
+  - Excluir: `DELETE http://127.0.0.1:8000/api/v1/metricas/{id}`
+- Mídias CRUD:
+  - Listar: http://127.0.0.1:8000/api/v1/midias
+  - Criar: `POST http://127.0.0.1:8000/api/v1/midias`
+  - Buscar: `GET http://127.0.0.1:8000/api/v1/midias/{id}`
+  - Atualizar: `PUT http://127.0.0.1:8000/api/v1/midias/{id}`
+  - Excluir: `DELETE http://127.0.0.1:8000/api/v1/midias/{id}`
+- Publicações CRUD:
+  - Listar: http://127.0.0.1:8000/api/v1/publicacoes
+  - Criar: `POST http://127.0.0.1:8000/api/v1/publicacoes`
+  - Buscar: http://127.0.0.1:8000/api/v1/publicacoes/{id}
+  - Atualizar: `PUT http://127.0.0.1:8000/api/v1/publicacoes/{id}`
+  - Excluir: `DELETE http://127.0.0.1:8000/api/v1/publicacoes/{id}`
+- Usuários CRUD:
+  - Listar: http://127.0.0.1:8000/api/v1/usuarios
+  - Criar: `POST http://127.0.0.1:8000/api/v1/usuarios`
+  - Buscar: http://127.0.0.1:8000/api/v1/usuarios/{id}
+  - Atualizar: `PUT http://127.0.0.1:8000/api/v1/usuarios/{id}`
+  - Excluir: `DELETE http://127.0.0.1:8000/api/v1/usuarios/{id}`
+- Empresa nested resources:
+  - Posts: `GET http://127.0.0.1:8000/api/v1/empresas/{id}/posts`
+  - Publicações: `GET http://127.0.0.1:8000/api/v1/empresas/{id}/publicacoes`
+  - Prompts: `GET http://127.0.0.1:8000/api/v1/empresas/{id}/prompts`
+  - Serviços: `GET http://127.0.0.1:8000/api/v1/empresas/{id}/servicos`
+  - Configurações: `GET http://127.0.0.1:8000/api/v1/empresas/{id}/configuracoes`
+  - Métricas: `GET http://127.0.0.1:8000/api/v1/empresas/{id}/metricas`
+- Autenticação:
+  - Login: `POST http://127.0.0.1:8000/api/v1/login` (form data `username`, `password`)
+  - Perfil atual: http://127.0.0.1:8000/api/v1/me
 
 Se a porta `8000` já estiver em uso, você também pode iniciar em `8001`:
 
